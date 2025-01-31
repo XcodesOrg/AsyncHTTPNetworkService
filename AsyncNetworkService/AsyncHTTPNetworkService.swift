@@ -28,18 +28,20 @@ public class AsyncHTTPNetworkService: AsyncNetworkService {
     public var requestModifiers: [NetworkRequestModifier]
     public var responseInterceptors: [NetworkResponseInterceptor]
 
-    private let urlSession = URLSession(configuration: .ephemeral)
+    public private(set) var urlSession: URLSession
 
     public var errorHandlers: [AsyncNetworkErrorHandler] = []
 
     public init(
         requestModifiers: [NetworkRequestModifier] = [],
         errorHandlers: [AsyncNetworkErrorHandler] = [],
-        reponseInterceptors: [NetworkResponseInterceptor] = []
+        reponseInterceptors: [NetworkResponseInterceptor] = [],
+        urlSession: URLSession = URLSession(configuration: .ephemeral)
     ) {
         self.requestModifiers = requestModifiers
         self.errorHandlers = errorHandlers
         self.responseInterceptors = reponseInterceptors
+        self.urlSession = urlSession
     }
 
     private func applyModifiers(to request: ConvertsToURLRequest) -> URLRequest {

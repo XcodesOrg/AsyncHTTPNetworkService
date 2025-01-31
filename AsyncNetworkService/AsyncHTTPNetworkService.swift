@@ -24,7 +24,7 @@ public protocol AsyncNetworkService: AnyObject {
     func requestData(_ request: ConvertsToURLRequest, validators: [ResponseValidator]) async throws -> (Data, URLResponse)
 }
 
-public class AsyncHTTPNetworkService: AsyncNetworkService {
+public final class AsyncHTTPNetworkService: AsyncNetworkService, Sendable {
     public var requestModifiers: [NetworkRequestModifier]
     public var responseInterceptors: [NetworkResponseInterceptor]
 

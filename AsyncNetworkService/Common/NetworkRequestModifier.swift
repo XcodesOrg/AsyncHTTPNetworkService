@@ -8,7 +8,7 @@
 import Foundation
 
 /// Represents a type that adds persistent details to a URL Request. (Ex: adding headers with authentication)
-public protocol NetworkRequestModifier {
+public protocol NetworkRequestModifier: Sendable {
     /// Add authentication details to a URL Request (for example, by adding authentication headers)
     ///
     /// - returns: The modified URL Request
